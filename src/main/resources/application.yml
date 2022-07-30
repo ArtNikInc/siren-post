@@ -1,4 +1,4 @@
-spring.datasource.url: jdbc:postgresql://localhost:5432/siren?allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=UTC&characterEncoding=UTF-8&useSSL=false
+spring.datasource.url: jdbc:postgresql://localhost:5432/siren_post?allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=UTC&characterEncoding=UTF-8&useSSL=false
 spring.datasource.username: postgres
 spring.datasource.password: root
 spring.datasource.driver-class-name: org.postgresql.Driver
