@@ -1,12 +1,13 @@
 package main.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Builder
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
 public class PostDto {
 
     private Long id;
