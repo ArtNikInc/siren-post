@@ -5,12 +5,19 @@ import main.dto.PostDto;
 import main.service.PostService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/posts")
 public class PostController {
 
     private final PostService service;
+
+    @GetMapping("/")
+    public List<PostDto> getAllPosts() {
+        return service.getAll();
+    }
 
     @GetMapping("/{id}")
     public PostDto getPost(@PathVariable Long id) {
