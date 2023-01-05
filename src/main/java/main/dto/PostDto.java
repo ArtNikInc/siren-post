@@ -1,6 +1,7 @@
 package main.dto;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 @Builder
 @AllArgsConstructor
@@ -10,7 +11,9 @@ import lombok.*;
 @NoArgsConstructor
 public class PostDto {
 
+    @Nullable
     private Long id;
+
     private String title;
     private String text;
 }
