@@ -10,6 +10,9 @@ import main.service.mapper.PostMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Transactional
 @Service
@@ -31,6 +34,13 @@ public class PostServiceImpl implements PostService {
     public PostDto getById(Long id) {
         return mapper.toDto(repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(Post.class, id)));
+    }
+
+    @Override
+    public List<PostDto> getAll() {
+        return repository.findAll().stream()
+                .map(mapper::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override
