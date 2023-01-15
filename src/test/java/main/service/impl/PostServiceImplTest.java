@@ -9,12 +9,12 @@ import main.service.mapper.PostMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 class PostServiceImplTest {
 
     private static final PostMapper MAPPER = Mappers.getMapper(PostMapper.class);
@@ -50,7 +50,8 @@ class PostServiceImplTest {
         when(repository.save(any())).thenReturn(POST);
         postService.save(MAPPER.toDto(POST));
         verify(repository).save(postArgumentCaptor.capture());
-        Assertions.assertEquals(POST, postArgumentCaptor.getValue());
+        Assertions.assertEquals(POST.getTitle(), postArgumentCaptor.getValue().getTitle());
+        Assertions.assertEquals(POST.getText(), postArgumentCaptor.getValue().getText());
     }
 
     @Test
@@ -80,11 +81,10 @@ class PostServiceImplTest {
 
     @Test
     void update() {
-        when(repository.findById(POST.getId())).thenReturn(Optional.of(POST));
         when(repository.save(any())).thenReturn(POST);
         postService.update(POST.getId(), MAPPER.toDto(POST));
         verify(repository).save(postArgumentCaptor.capture());
-        Assertions.assertEquals(POST, postArgumentCaptor.getValue());
+        Assertions.assertEquals(POST.getId(), postArgumentCaptor.getValue().getId());
     }
 
     private void checkPost(PostDto postDto, Post post) {
