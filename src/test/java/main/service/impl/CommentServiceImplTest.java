@@ -30,7 +30,7 @@ class CommentServiceImplTest {
             .text("text")
             .parentId(null)
             .build();
-    private static Comment COMMENT_CHILD = Comment.builder()
+    private static final Comment COMMENT_CHILD = Comment.builder()
             .id(2L)
             .text("text_child")
             .parentId(COMMENT.getId())
