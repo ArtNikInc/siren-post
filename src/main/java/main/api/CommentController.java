@@ -16,18 +16,18 @@ public class CommentController {
     private final CommentService service;
 
     @PostMapping("/")
-    public void addCommentToPost(CommentDto dto){
+    public void addCommentToPost(CommentDto dto) {
         dto.setId(null);
         service.addComment(dto);
     }
 
     @GetMapping("/{id}")
-    public List<CommentDto> getChildComments(@NonNull @PathVariable Long id){
+    public List<CommentDto> getChildComments(@NonNull @PathVariable Long id) {
         return service.getChildComments(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteComment(@PathVariable Long id){
+    public void deleteComment(@PathVariable Long id) {
         service.deleteComment(id);
     }
 
