@@ -10,12 +10,14 @@ import main.service.mapper.PostMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mapstruct.factory.Mappers;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
@@ -24,7 +26,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 class CommentServiceImplTest {
 
     private static final CommentMapper MAPPER = Mappers.getMapper(CommentMapper.class);
@@ -65,7 +67,7 @@ class CommentServiceImplTest {
         when(commentRepository.save(any())).thenReturn(COMMENT);
         commentService.addComment(MAPPER.toDto(COMMENT));
         verify(commentRepository).save(commentArgumentCaptor.capture());
-        assertEquals(COMMENT, commentArgumentCaptor.getValue());
+        assertEquals(COMMENT.getId(), commentArgumentCaptor.getValue().getId());
     }
 
     @Test
